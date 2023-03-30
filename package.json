@@ -2,7 +2,8 @@
   "name": "hooli-backend",
   "version": "1.0.0",
   "engines": {
-    "node": "19.0.0"
+    "node": "19.0.0",
+    "npm": "9.2.0"
   },
   "description": "",
   "main": "index.js",
