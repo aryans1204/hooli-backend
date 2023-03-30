@@ -1,4 +1,4 @@
 
-node_modules/
-config/
-backend/
+/node_modules
+/config
+/backend
