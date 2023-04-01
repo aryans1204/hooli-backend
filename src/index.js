@@ -11,6 +11,7 @@ const expenditureRouter = require('./routers/expenditure')
 
 const app = express()
 const port = process.env.PORT
+app.use(cors())
 
 app.use(express.json())
 app.use(userRouter)
@@ -18,7 +19,6 @@ app.use(currencyRouter)
 app.use(incomeRouter)
 app.use(investmentRouter)
 app.use(expenditureRouter)
-app.use(cors())
 
 app.listen(port, () => {
     console.log("Server is up and running on port " + port)
