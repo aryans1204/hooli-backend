@@ -51,5 +51,5 @@
      }
  })
  
- const Expenditure = mongoose.model('Expenditure', expenditureSchema)
+ const Expenditure = mongoose.model('Expenditures', expenditureSchema)
  module.exports = Expenditure
