@@ -166,7 +166,7 @@ router.get("/api/investments", auth, async (req, res) => {
         optionsData[index]["Time Series (Daily)"][now]["1. open"]
       );
       portfolio.options[index].derivative_current_price = current_price;*/
-        let current_price = 0;
+        /*let current_price = 0;
         let i = 0;
         var tempDate = getDay
         var tempMonth = getMonth
@@ -181,13 +181,9 @@ router.get("/api/investments", auth, async (req, res) => {
           if (optionsData[index]["Time Series (Daily)"][date] !== undefined) {
             current_price = parseInt(
               optionsData[index]["Time Series (Daily)"][date]["1. open"]
-            );
+            );*/
+            let current_price = optionsData[index]["Global Quote"]["02. open"]
             portfolio.options[index].derivative_current_price = current_price;
-            break;
-          }
-          tempDate--
-          i++;
-        }
       });
       console.log("options here");
       console.log(portfolio.options);
