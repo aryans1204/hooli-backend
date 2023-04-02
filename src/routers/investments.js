@@ -126,10 +126,12 @@ router.get("/api/investments", auth, async (req, res) => {
       );*/
         let current_price = 0;
         let i = 0;
+        var temp = getDay
         while (!current_price && i < 7) {
           console.log("current price = " + current_price);
+          if (getDay-i == 0) temp = 30
           // check up to 7 days back
-          let date = now.slice(0, 8) + (getDay - i).toString();
+          let date = now.slice(0, 8) + (temp).toString();
           console.log(date)
           if (data[index]["Time Series (Daily)"][date] !== undefined) {
             console.log("i'm running");
@@ -139,6 +141,7 @@ router.get("/api/investments", auth, async (req, res) => {
             break;
           }
           i++;
+          temp--;
         }
         console.log(`current price ${current_price}`);
         const pnl =
