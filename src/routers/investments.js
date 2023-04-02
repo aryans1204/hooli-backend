@@ -126,15 +126,16 @@ router.get("/api/investments", auth, async (req, res) => {
       );*/
         let current_price = 0;
         let i = 0;
-        var temp = getDay
+        var tempDate = getDay
+        var tempMonth = getMonth
         while (!current_price && i < 7) {
           console.log("current price = " + current_price);
           if (getDay-i == 0) {
-            temp = 30
-            getMonth--
+            tempDate = 30
+            tempMonth--
           }
           // check up to 7 days back
-          let date = getYear + "-" + getMonth + "-" + (temp).toString();
+          let date = getYear + "-" + tempMonth + "-" + (tempDate).toString();
           console.log(date)
           if (data[index]["Time Series (Daily)"][date] !== undefined) {
             console.log("i'm running");
@@ -166,9 +167,16 @@ router.get("/api/investments", auth, async (req, res) => {
       portfolio.options[index].derivative_current_price = current_price;*/
         let current_price = 0;
         let i = 0;
+        var tempDate = getDay
+        var tempMonth = getMonth
         while (!current_price && i < 7) {
           // check up to 7 days back
-          const date = now.slice(0, 8) + (getDay - i).toString();
+          if (getDay-i == 0) {
+            tempDate = 30
+            tempMonth--
+          }
+          // check up to 7 days back
+          let date = getYear + "-" + tempMonth + "-" + (tempDate).toString();
           if (optionsData[index]["Time Series (Daily)"][date] !== undefined) {
             current_price = parseInt(
               optionsData[index]["Time Series (Daily)"][date]["1. open"]
