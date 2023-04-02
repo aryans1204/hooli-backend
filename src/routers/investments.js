@@ -47,7 +47,7 @@ const fetchData = async (params, type) => {
   if (type === "equities") {
     ind = 0;
     for (param of params) {
-      var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${params[ind].equity_ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
+      var url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${params[ind].equity_ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
       const temp = await needle("get", url);
       data[ind] = temp.body;
       ind = ind + 1;
@@ -55,7 +55,7 @@ const fetchData = async (params, type) => {
   } else {
     ind = 0;
     for (param of params) {
-      var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${params[ind].derivative_ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
+      var url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${params[ind].derivative_ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
       const temp = await needle("get", url);
       data[ind] = temp.body;
       ind = ind + 1;
@@ -124,7 +124,7 @@ router.get("/api/investments", auth, async (req, res) => {
         /*const current_price = parseInt(
         data[index]["Time Series (Daily)"][now]["1. open"]
       );*/
-        let current_price = 0;
+        /*let current_price = 0;
         let i = 0;
         var tempDate = getDay
         var tempMonth = getMonth
@@ -146,7 +146,8 @@ router.get("/api/investments", auth, async (req, res) => {
           }
           i++;
           tempDate--
-        }
+        }*/
+        let current_price = data[index]["Global Quote"]["02. open"]
         console.log(`current price ${current_price}`);
         const pnl =
           (
