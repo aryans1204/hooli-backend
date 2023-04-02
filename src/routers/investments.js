@@ -145,7 +145,7 @@ router.get("/api/investments", auth, async (req, res) => {
             break;
           }
           i++;
-          tempDate--;
+          tempDate--
         }
         console.log(`current price ${current_price}`);
         const pnl =
@@ -184,6 +184,7 @@ router.get("/api/investments", auth, async (req, res) => {
             portfolio.options[index].derivative_current_price = current_price;
             break;
           }
+          tempDate--
           i++;
         }
       });
