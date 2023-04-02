@@ -129,9 +129,12 @@ router.get("/api/investments", auth, async (req, res) => {
         var temp = getDay
         while (!current_price && i < 7) {
           console.log("current price = " + current_price);
-          if (getDay-i == 0) temp = 30
+          if (getDay-i == 0) {
+            temp = 30
+            getMonth--
+          }
           // check up to 7 days back
-          let date = now.slice(0, 8) + (temp).toString();
+          let date = getYear + "-" + getMonth + "-" + (temp).toString();
           console.log(date)
           if (data[index]["Time Series (Daily)"][date] !== undefined) {
             console.log("i'm running");
